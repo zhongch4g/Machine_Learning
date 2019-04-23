@@ -14,6 +14,7 @@ class KMeans(object):
     def __init__(self):
         pass
 
+
     def load_csv(self, path, delimiter):
         # load data
         print("loading data...\n")
@@ -24,6 +25,7 @@ class KMeans(object):
         # label = data[:, -1]
         # label = self.oneHotEncoding(label)
         return feature
+
 
     def k_means(self, data, k):
         # @ Randomly select k node as center
@@ -58,7 +60,6 @@ class KMeans(object):
             else:
                 center_node = new_center_node
             Iteration_time += 1
-
 
 
     def run(self):
