@@ -32,7 +32,7 @@ class GNB:
         for j in setlabel:
             # ipt is a single test set
             for i in range(len(ipt)):
-#                 print("In Label ", j)
+                # print("In Label ", j)
                 p = self.gaussFunction(ipt[i], GaussParaDict[i][j][0], GaussParaDict[i][j][1])
 #                 print("Number ", i, "-th Feature P = : ", p)    
                 judgeDict[j] *= p
@@ -78,7 +78,7 @@ class GNB:
             
             for i in ll:
                 # tmp3: each col minus square of mu
-#                 print("zip(i[0], mu))", list(zip(i[0], mu)))
+                # print("zip(i[0], mu))", list(zip(i[0], mu)))
                 tmp3 = [(k[0] - k[1]) ** 2 for k in zip(i[0], mu)]
 #                 print(tmp3)
                 # tmp2: each col's sum after minus square of mu
@@ -138,7 +138,7 @@ train1 = [[[170, 57], 'W'],
 
 a = int(input("how many test case: "))
 for j in range(a):
-    i = [int(x) for x in raw_input("input the test case split by space(example:170 57 32): ").split()]
+    i = [int(x) for x in input("input the test case split by space(example:170 57 32): ").split()]
     gnb = GNB(i, train)
     predict = gnb.run()
     print(i, "It's Sex More Likely a :", predict)
