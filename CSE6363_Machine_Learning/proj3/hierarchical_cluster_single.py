@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2019/4/25 10:19 AM
+# @Time    : 2019/4/25 2:28 PM
 # @Author  : zhongch4g
 # @Site    : 
-# @File    : hierarchical_clustering.py
+# @File    : hierarchical_cluster_single.py
 # @Software: IntelliJ IDEA
-import sys
 
+import sys
 
 
 """
@@ -18,11 +18,14 @@ and recursively merges clusters according to a cluster similarity measure
 Single (minimum) linkage: similarity of the two most similar items in the two clusters
 n Complete (maximum) linkage: similarity of the two most dissimilar items in the two clusters
 """
+
+
 class Node(object):
     def __init__(self, val):
         self.val = val
         self.left = None
         self.right = None
+        self.parent = None
 
 
 class HierarchicalClustering(object):
@@ -33,8 +36,6 @@ class HierarchicalClustering(object):
         """
         :param cluster_one: [[], [], [], ...]
         :param cluster_two: [[], [], [], ...]
-        :param crt:
-        :param nxt:
         :return:
         """
         distance = sys.maxsize
@@ -59,31 +60,28 @@ class HierarchicalClustering(object):
         print("Current tier node: ", crt)
         tier += 1
         while len(crt) != 1:
+            distance = sys.maxsize
             print("Start tier :", tier)
             tier += 1
             # first cluster
             for cur_idx in range(len(crt)):
-                distance = sys.maxsize
 
                 # second cluster
                 for nxt_idx in range(cur_idx+1, len(crt)):
-                    if crt[cur_idx] is not None and crt[nxt_idx] is not None:
                         # calc min distance of cluster
-                        cluster2Distance = self.calcNextTier(crt[cur_idx], crt[nxt_idx])
-                        if cluster2Distance < distance:
-                            # Calc the distance between two cluster
-                            distance = cluster2Distance
-                            tmp_cur_idx = cur_idx
-                            tmp_nxt_idx = nxt_idx
-                    if crt[cur_idx] is not None and self.is_only_left_one(crt, cur_idx):
-                        nxt.append(crt[tmp_cur_idx])
-                        crt[tmp_cur_idx] = None
-                if crt[tmp_cur_idx] is not None and crt[tmp_nxt_idx] is not None:
-                    nxt.append(crt[tmp_cur_idx] + crt[tmp_nxt_idx])
-                    crt[tmp_cur_idx], crt[tmp_nxt_idx] = None, None
-
+                    cluster2Distance = self.calcNextTier(crt[cur_idx], crt[nxt_idx])
+                    if cluster2Distance < distance:
+                        # Calc the distance between two cluster
+                        distance = cluster2Distance
+                        tmp_cur_idx = cur_idx
+                        tmp_nxt_idx = nxt_idx
+            print("Cluster :\n", crt[tmp_cur_idx], "\nAnd Cluster :\n", crt[tmp_nxt_idx], "\nMerge, the distance is :", distance)
+            nxt.append(crt[tmp_cur_idx] + crt[tmp_nxt_idx])
+            for i in range(len(crt)):
+                if (i != tmp_cur_idx and i != tmp_nxt_idx):
+                    nxt.append(crt[i])
             crt = nxt
-            print("Current Tier Node: \n", crt)
+            print("Current Tier Node: \n", crt, len(crt[0]))
             nxt = []
 
     def is_only_left_one(self, l, cur_idx):
@@ -116,5 +114,3 @@ train = [[[170, 57, 32], 'W'],
          [[175, 72, 30], 'M']]
 hc = HierarchicalClustering(train)
 hc.run()
-
-[ [[], []], [[]], ...]
