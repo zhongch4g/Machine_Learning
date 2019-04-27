@@ -114,3 +114,7 @@ train = [[[170, 57, 32], 'W'],
          [[175, 72, 30], 'M']]
 hc = HierarchicalClustering(train)
 hc.run()
+
+
+
+
