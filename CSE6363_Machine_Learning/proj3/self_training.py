@@ -9,8 +9,9 @@ import numpy as np
 
 
 class SelfTraining(object):
-    def __init__(self, train, test):
+    def __init__(self, train, unlabeled, test):
         self.train = train
+        self.unlabeled = unlabeled
         self.test = test
 
     # factorize
@@ -45,6 +46,7 @@ class SelfTraining(object):
         return 1/(1 + np.exp(-z))
 
     def predict(self, train_X, train_y, test_X, theta, k):
+        # print(theta.T.shape, test_X.T.shape)
         x_theta = np.dot(theta.T, test_X.T)
         pre = self.sigmoid(x_theta).flatten().tolist()
         test_X = test_X.tolist()
@@ -55,7 +57,7 @@ class SelfTraining(object):
         for i in range(k):
             if (len(new_test) == 0):
                 break
-            if (new_test[0][1] >= 0.5):
+            if (new_test[0][1] > 0.5):
                 train_X.append(new_test[0][0])
                 train_y.append(1)
                 new_test.pop(0)
@@ -66,20 +68,72 @@ class SelfTraining(object):
         new_test = [i[0] for i in new_test]
         return np.array(train_X), np.array(train_y), new_test
 
-    def run(self):
-        train_X, train_y = self.split(self.train)
-        x0 = np.ones((np.array(self.test).shape[0], 1))
-        test_X = np.c_[self.test, x0]
-        # print(test_X.shape)
-        # print(train_X.shape, train_y.shape)
-        while(len(test_X) != 0):
-            theta = self.SGD(train_X, train_y, 0.01, 200)
-            train_X, train_y, test_X = self.predict(train_X, train_y, test_X, theta, k = 2)
-            x0 = np.ones((np.array(test_X).shape[0], 1))
-            test_X = np.c_[test_X, x0]
-            print(train_X.shape, train_y.shape)
-        print(train_X, train_y)
+    def predict_LR(self, test_X, test_y, theta):
+        x0 = np.ones((test_X.shape[0], 1))
+        test_X = np.c_[test_X, x0]
+        x_theta = np.dot(theta.T, test_X.T)
+        pre = self.sigmoid(x_theta)
+        pre[pre>0.5] = 1
+        pre[pre<=0.5] = 0
+        return pre
 
+    def predict_semi(self, test_X, test_y, theta):
+        x0 = np.ones((test_X.shape[0], 1))
+        test_X = np.c_[test_X, x0]
+        x_theta = np.dot(theta.T, test_X.T)
+        pre = self.sigmoid(x_theta)
+        pre[pre>0.5] = 1
+        pre[pre<=0.5] = 0
+        return pre
+
+    def run(self, epoch):
+        train_X, train_y = self.split(self.train)
+        test_X, test_y = self.split(self.test)
+
+        x0 = np.ones((np.array(self.unlabeled).shape[0], 1))
+        unlabel = np.c_[self.unlabeled, x0]
+
+        length = train_X.shape[0] + unlabel.shape[0]
+
+        theta = 0
+        # Semi supervised model
+        while(len(unlabel) != 0 or train_X.shape[0] != length):
+            theta = self.SGD(train_X, train_y, 0.01, epoch)
+            train_X, train_y, unlabel = self.predict(train_X, train_y, unlabel, theta, k = 2)
+            x0 = np.ones((np.array(unlabel).shape[0], 1))
+            unlabel = np.c_[unlabel, x0]
+
+        pre = self.predict_semi(test_X, test_y, theta)
+        correct = 0
+        for i in range(test_X.shape[0]):
+            if pre[0, i] == 1 and test_y[i] == 1:
+                correct += 1
+            if pre[0, i] == 0 and test_y[i] == 0:
+                correct += 1
+            if pre[0, i] == 1:
+                print(test_X[i], "W")
+            if pre[0, i] == 0:
+                print(test_X[i], "M")
+        accuracy = correct / test_X.shape[0]
+        print("The accuracy of semi-supervised classifier: ", accuracy)
+
+
+        # LR model
+        train_X, train_y = self.split(self.train)
+        theta = self.SGD(train_X, train_y, 0.01, epoch)
+        pre = self.predict_LR(test_X, test_y, theta)
+        correct = 0
+        for i in range(test_X.shape[0]):
+            if pre[0, i] == 1 and test_y[i] == 1:
+                correct += 1
+            if pre[0, i] == 0 and test_y[i] == 0:
+                correct += 1
+            if pre[0, i] == 1:
+                print(test_X[i], "W")
+            if pre[0, i] == 0:
+                print(test_X[i], "M")
+        accuracy = correct / test_X.shape[0]
+        print("The accuracy of single logic regression classifier: ", accuracy)
 
 
 
@@ -95,7 +149,8 @@ train = [[[170, 57, 32], 'W'],
          [[155, 48, 31], 'W'],
          [[165, 60, 27], 'W']]
 
-test = [[182, 80, 30],
+
+unlabeled = [[182, 80, 30],
         [175, 69, 28],
         [178, 80, 27],
         [160, 50, 31],
@@ -121,5 +176,17 @@ test = [[182, 80, 30],
         [177, 80, 30],
         [170, 65, 28]]
 
-st = SelfTraining(train, test)
-st.run()
+test = [[[169, 58, 30], 'W'],
+        [[185, 90, 29], 'M'],
+        [[148, 40, 31], 'W'],
+        [[177, 80, 29], 'M'],
+        [[170, 62, 27], 'W'],
+        [[172, 72, 30], 'M'],
+        [[175, 68, 27], 'W'],
+        [[178, 80, 29], 'M']]
+
+st = SelfTraining(train, unlabeled, test)
+
+for i in [200, 500]:
+    print("Epoch: ", i)
+    st.run(i)
