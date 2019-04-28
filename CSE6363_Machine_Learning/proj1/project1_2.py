@@ -1,4 +1,6 @@
 import numpy as np
+
+
 class logisticRegression(object):
     def __init__(self, train, test):
         self.train = train
@@ -59,6 +61,7 @@ class logisticRegression(object):
         test_X = np.c_[test_X, x0]
         x_theta = np.dot(theta.T, test_X.T)
         pre = self.sigmoid(x_theta)
+        print(pre)
         pre[pre>0.5] = 1
         pre[pre<=0.5] = 0
         return pre
@@ -69,7 +72,7 @@ class logisticRegression(object):
     def run(self):
         train_X, train_y = self.split(self.train)
         test_X, test_y = self.split(self.test)
-        theta = self.SGD(train_X, train_y, 0.01, 200)
+        theta = self.SGD(train_X, train_y, 0.01, 300)
         pre = self.predict(test_X, test_y, theta)
         for i in range(test_X.shape[0]):
             if pre[0, i] == 1:
@@ -115,6 +118,7 @@ test = [[[169, 58, 30], 'W'],
         [[172, 72, 30], 'M'],
         [[175, 68, 27], 'W'],
         [[178, 80, 29], 'M']]
+
 
 logisticRegression = logisticRegression(train, test)
 logisticRegression.run()

@@ -16,6 +16,7 @@ class SelfTraining(object):
 
     # factorize
     def tointclass(self, label):
+        # woman 1 man 0
         intclass = np.array(np.unique(label, return_inverse=True)[1]).astype(np.float64)
         return intclass
 
@@ -37,24 +38,51 @@ class SelfTraining(object):
             for rand in range(X.shape[0]):
                 py = y[rand]
                 h = self.sigmoid(np.dot(theta.T, X[rand]))
-                #                 print(theta.shape, X[rand].shape)
                 theta = theta + step * (py - h) * X[rand].reshape((4, 1))
+            iter_cnt += 1
+        return theta
+
+    def BGD(self, X, y, step, itertimes):
+        m, n = X.shape
+        theta = np.ones((X.shape[1] + 1, 1))
+        x0 = np.ones((X.shape[0], 1))
+        X = np.c_[X, x0]
+        iter_cnt = 0
+        while (iter_cnt < itertimes):
+            # Random select data
+            sum = np.zeros((4, 1))
+            for rand in range(X.shape[0]):
+                py = y[rand]
+                h = self.sigmoid(np.dot(theta.T, X[rand]))
+                sum += (py - h) * X[rand].reshape((4, 1))
+            theta = theta*(1 - step*0.0001) + step * sum
             iter_cnt += 1
         return theta
 
     def sigmoid(self, z):
         return 1/(1 + np.exp(-z))
 
+    def sort_way(self, pair):
+        if 1 - pair[1] < pair[1]:
+            return 1 - pair[1]
+        else:
+            return pair[1]
+
     def predict(self, train_X, train_y, test_X, theta, k):
-        # print(theta.T.shape, test_X.T.shape)
         x_theta = np.dot(theta.T, test_X.T)
         pre = self.sigmoid(x_theta).flatten().tolist()
+
         test_X = test_X.tolist()
         train_X = train_X.tolist()
         train_y = train_y.tolist()
-        new_test = [[x[:-1], y] for (x,y) in sorted(zip(test_X, pre), key=lambda pair:pair[1], reverse=True)]
+        new_test = []
+        # based pre ascent sort the test_X
+        new_sort = sorted(zip(test_X, pre), key=self.sort_way)
 
-        for i in range(k):
+        for (x, y) in new_sort:
+            new_test.append([x[:-1], y])
+
+        for _ in range(k):
             if (len(new_test) == 0):
                 break
             if (new_test[0][1] > 0.5):
@@ -65,28 +93,28 @@ class SelfTraining(object):
                 train_X.append(new_test[0][0])
                 train_y.append(0)
                 new_test.pop(0)
-        new_test = [i[0] for i in new_test]
+        new_test = [j[0] for j in new_test]
         return np.array(train_X), np.array(train_y), new_test
-
-    def predict_LR(self, test_X, test_y, theta):
-        x0 = np.ones((test_X.shape[0], 1))
-        test_X = np.c_[test_X, x0]
-        x_theta = np.dot(theta.T, test_X.T)
-        pre = self.sigmoid(x_theta)
-        pre[pre>0.5] = 1
-        pre[pre<=0.5] = 0
-        return pre
 
     def predict_semi(self, test_X, test_y, theta):
         x0 = np.ones((test_X.shape[0], 1))
         test_X = np.c_[test_X, x0]
         x_theta = np.dot(theta.T, test_X.T)
         pre = self.sigmoid(x_theta)
-        pre[pre>0.5] = 1
-        pre[pre<=0.5] = 0
+        pre[pre > 0.5] = 1
+        pre[pre <= 0.5] = 0
         return pre
 
-    def run(self, epoch):
+    def predict_LR(self, test_X, test_y, theta):
+        x0 = np.ones((test_X.shape[0], 1))
+        test_X = np.c_[test_X, x0]
+        x_theta = np.dot(theta.T, test_X.T)
+        pre = self.sigmoid(x_theta)
+        pre[pre > 0.5] = 1
+        pre[pre <= 0.5] = 0
+        return pre
+
+    def run(self, epoch, step):
         train_X, train_y = self.split(self.train)
         test_X, test_y = self.split(self.test)
 
@@ -98,8 +126,8 @@ class SelfTraining(object):
         theta = 0
         # Semi supervised model
         while(len(unlabel) != 0 or train_X.shape[0] != length):
-            theta = self.SGD(train_X, train_y, 0.01, epoch)
-            train_X, train_y, unlabel = self.predict(train_X, train_y, unlabel, theta, k = 2)
+            theta = self.BGD(train_X, train_y, step, epoch)
+            train_X, train_y, unlabel = self.predict(train_X, train_y, unlabel, theta, k = 4)
             x0 = np.ones((np.array(unlabel).shape[0], 1))
             unlabel = np.c_[unlabel, x0]
 
@@ -120,7 +148,7 @@ class SelfTraining(object):
 
         # LR model
         train_X, train_y = self.split(self.train)
-        theta = self.SGD(train_X, train_y, 0.01, epoch)
+        theta = self.BGD(train_X, train_y, step, epoch)
         pre = self.predict_LR(test_X, test_y, theta)
         correct = 0
         for i in range(test_X.shape[0]):
@@ -134,9 +162,6 @@ class SelfTraining(object):
                 print(test_X[i], "M")
         accuracy = correct / test_X.shape[0]
         print("The accuracy of single logic regression classifier: ", accuracy)
-
-
-
 
 
 train = [[[170, 57, 32], 'W'],
@@ -187,6 +212,7 @@ test = [[[169, 58, 30], 'W'],
 
 st = SelfTraining(train, unlabeled, test)
 
-for i in [200, 500]:
+step = 0.001
+for i in [1000]:
     print("Epoch: ", i)
-    st.run(i)
+    st.run(i, step)
