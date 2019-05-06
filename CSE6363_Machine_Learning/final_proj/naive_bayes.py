@@ -16,10 +16,6 @@ import sys
 
 class NaiveBayes(object):
     def __init__(self):
-        """
-        self.train = {class1:{500 docs words count}, class2:{} ...}
-        self.test = {class1:[{1 doc words count}, {1 doc words count}, class2:[{}, {}, {}]]}
-        """
         self.root = "./smsspamcollection/"
         self.data_set = "SMSSpamCollection"
         self.stop_words_path = "./stop_words_eng.txt"
@@ -31,6 +27,7 @@ class NaiveBayes(object):
         stop_words = []
         with open(self.stop_words_path, 'r') as r:
             stop_words = r.read().split('\n')
+        print("Loading stop words successfully...")
         return stop_words
 
     def load_data(self):
@@ -60,7 +57,7 @@ class NaiveBayes(object):
             data_word_bags_X.append(self.split_data(sentence))
 
         print("Load data successfully...")
-        print("Spam num: ", data_y.count("spam"), "Ham num: ", data_y.count("ham"))
+        print("Spam number: ", data_y.count("spam"), "Ham number: ", data_y.count("ham"))
         return data_word_bags_X, data_y
 
     def split_data(self, sentence):
@@ -137,7 +134,6 @@ class NaiveBayes(object):
             train_wb_spam, train_wb_ham = self.big_word_bags(train_X, train_y)
             self.naive_bayes(train_wb_spam, train_wb_ham, test_X, test_y)
 
-
     def big_word_bags(self, train_X, train_y):
         train_wb_spam, train_wb_ham = {}, {}
         num_spam, num_ham = 0, 0
@@ -154,7 +150,6 @@ class NaiveBayes(object):
                     train_wb_ham[k] += v
         self.num_spam, self.num_ham = num_spam, num_ham
         return train_wb_spam, train_wb_ham
-
 
     def select_n_as_test(self, data_X, data_y, n, k):
         divide_index = []
@@ -186,20 +181,10 @@ class NaiveBayes(object):
         t1 = time.time()
         data_X, data_y = self.load_data()
 
-        self.k_fold(data_X, data_y, k = 3)
+        self.k_fold(data_X, data_y, k = 10)
 
         # self.naive_bayes(self.train, self.test)
         print("Time cost: ", time.time() - t1)
 
 nb = NaiveBayes()
 nb.run()
-
-"""
-@ No stop words
-Loading data...
-Load data successfully...
-Accuracy : 0.9451022604951561
-Accuracy : 0.9531502423263328
-Accuracy : 0.9439956919763058
-5.760403871536255
-"""
