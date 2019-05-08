@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="154d41e4-c050-4429-8524-4b01698ac6ca" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py" afterPath="$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py" afterPath="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Machine Learning.ipynb" afterPath="$PROJECT_DIR$/Machine Learning.ipynb" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,18 +21,44 @@
     <SUITE FILE_PATH="coverage/Machine_Learning$hierarchical_clustering.coverage" NAME="hierarchical_clustering Coverage Results" MODIFIED="1556221574884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3" />
     <SUITE FILE_PATH="coverage/Machine_Learning$hierarchical_cluster_modify.coverage" NAME="hierarchical_cluster_modify Coverage Results" MODIFIED="1556349623647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3" />
     <SUITE FILE_PATH="coverage/Machine_Learning$project1_2.coverage" NAME="project1_2 Coverage Results" MODIFIED="1556486543573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/proj1" />
+    <SUITE FILE_PATH="coverage/Machine_Learning$svm.coverage" NAME="svm Coverage Results" MODIFIED="1557354291874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2" />
     <SUITE FILE_PATH="coverage/Machine_Learning$k_means.coverage" NAME="k_means Coverage Results" MODIFIED="1555482133992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE5334_Data_Mining/proj4" />
     <SUITE FILE_PATH="coverage/Machine_Learning$self_training.coverage" NAME="self_training Coverage Results" MODIFIED="1556490994351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3" />
+    <SUITE FILE_PATH="coverage/Machine_Learning$decisionTrees.coverage" NAME="decisionTrees Coverage Results" MODIFIED="1557357031190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="naive_bayes.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="naive_bayes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="440">
+              <caret line="100" column="17" lean-forward="false" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
               <folding>
                 <element signature="e#170#179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="svm.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/svm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="decisionTrees.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,6 +92,7 @@
       <find>self.BGD</find>
       <find>print</find>
       <find>self.all_train_words</find>
+      <find>plot_hyperplaneplot_hyperplane</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,6 +117,7 @@
         <option value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3/self_training.py" />
         <option value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj1/project1_2.py" />
         <option value="$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py" />
+        <option value="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py" />
       </list>
     </option>
   </component>
@@ -117,9 +147,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -130,25 +157,26 @@
             <path>
               <item name="Machine_Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="CSE5334_Data_Mining" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Machine_Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
               <item name="CSE6363_Machine_Learning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Machine_Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
               <item name="CSE6363_Machine_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="final_proj" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Machine_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="CSE6363_Machine_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="final_proj" type="462c0819:PsiDirectoryNode" />
-              <item name="smsspamcollection" type="462c0819:PsiDirectoryNode" />
+              <item name="hwk2" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -189,7 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.naive_bayes (1)">
+  <component name="RunManager" selected="Python.decisionTrees">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -270,20 +298,20 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration name="hierarchical_cluster_complete" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="decisionTrees" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Machine_Learning" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj3/hierarchical_cluster_complete.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -324,24 +352,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="project1_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj1" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Machine_Learning" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CSE6363_Machine_Learning/proj1/project1_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
     <configuration name="self_training" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -360,20 +370,38 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
+    <configuration name="svm" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Machine_Learning" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/svm.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.hierarchical_cluster_complete" />
-      <item index="1" class="java.lang.String" itemvalue="Python.self_training" />
-      <item index="2" class="java.lang.String" itemvalue="Python.project1_2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.naive_bayes" />
-      <item index="4" class="java.lang.String" itemvalue="Python.naive_bayes (1)" />
+      <item index="0" class="java.lang.String" itemvalue="Python.self_training" />
+      <item index="1" class="java.lang.String" itemvalue="Python.naive_bayes" />
+      <item index="2" class="java.lang.String" itemvalue="Python.naive_bayes (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.svm" />
+      <item index="4" class="java.lang.String" itemvalue="Python.decisionTrees" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.naive_bayes (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.naive_bayes" />
-        <item index="2" class="java.lang.String" itemvalue="Python.self_training" />
-        <item index="3" class="java.lang.String" itemvalue="Python.project1_2" />
-        <item index="4" class="java.lang.String" itemvalue="Python.hierarchical_cluster_complete" />
+        <item index="0" class="java.lang.String" itemvalue="Python.decisionTrees" />
+        <item index="1" class="java.lang.String" itemvalue="Python.svm" />
+        <item index="2" class="java.lang.String" itemvalue="Python.naive_bayes (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.naive_bayes" />
+        <item index="4" class="java.lang.String" itemvalue="Python.self_training" />
       </list>
     </recent_temporary>
   </component>
@@ -400,12 +428,13 @@
       <workItem from="1555472906941" duration="40001000" />
       <workItem from="1556476556046" duration="13885000" />
       <workItem from="1556660273872" duration="130000" />
-      <workItem from="1557073460087" duration="14137000" />
+      <workItem from="1557073460087" duration="14313000" />
+      <workItem from="1557354282905" duration="1108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103442000" />
+    <option name="totallyTimeSpent" value="104726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -493,6 +522,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#170#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/proj3/self_training.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4085">
@@ -515,7 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1824">
           <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -531,7 +569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="60" column="34" lean-forward="true" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -578,7 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1748">
           <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -801,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -817,7 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
           <caret line="133" column="42" lean-forward="true" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -841,10 +874,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/final_proj/naive_bayes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="100" column="17" lean-forward="false" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
           <folding>
             <element signature="e#170#179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSE6363_Machine_Learning/hwk2/decisionTrees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,8 @@
 import csv
 import numpy as np
 
+
+# Need Modify
 def calcEntropy(y):
     Entropy = 0
     numOfdata = y.shape[0]
@@ -9,9 +11,8 @@ def calcEntropy(y):
         eachClass.setdefault(i, 0)
         eachClass[i] += 1
     for each in eachClass.values():
-#         print("-", each, "/", numOfdata, "*log(", each, "/", numOfdata, ") = ", -(each/numOfdata)*np.log(each/numOfdata))
         Entropy += -(each/numOfdata)*np.log(each/numOfdata)
-#     print(Entropy)
+    print(Entropy)
     return Entropy
     
 def calcConditionEntropy(X, y):
@@ -23,7 +24,7 @@ def calcConditionEntropy(X, y):
     maxInfoFeature = 0
     # each feature
     for i in range(X.shape[1]):
-#         print(i, "-th feature")
+        print(i, "-th feature")
         eachClass = dict()
         ConditionEntropy = 0
         # each feature each class's count
@@ -45,10 +46,8 @@ def calcConditionEntropy(X, y):
             for q in eachClass[p].keys():
                 # feature class / numOfdata
                 if q != "sum":
-#                     print("class:", q)
-#                     print("-", eachClass[p]["sum"], "/", numOfdata, "*", eachClass[p][q] ,"/", eachClass[p]["sum"], "log(",  eachClass[p][q], "/", eachClass[p]["sum"], ")", -ratio*(eachClass[p][q]/eachClass[p]["sum"])*np.log(eachClass[p][q]/eachClass[p]["sum"]))
                     ConditionEntropy += -ratio*(eachClass[p][q]/eachClass[p]["sum"])*np.log(eachClass[p][q]/eachClass[p]["sum"])
-#         print("ConditionEntropy: ", ConditionEntropy)
+        print("ConditionEntropy: ", ConditionEntropy)
         InformationGain = Entropy - ConditionEntropy
 #         print("Information Gain:" , InformationGain)
         if (InformationGain > maxInfo):
