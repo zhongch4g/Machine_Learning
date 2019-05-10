@@ -19,6 +19,7 @@ class NaiveBayes(object):
         self.root = "./smsspamcollection/"
         self.data_set = "SMSSpamCollection"
         self.stop_words_path = "./stop_words_eng.txt"
+        # Filter some words， like 'the'、'is'、'at'、'which'、'on', don't have actual meaning. Reduce space & improve efficiency
         self.stop_words = self.load_stop_words()
 
     def load_stop_words(self):
@@ -60,6 +61,7 @@ class NaiveBayes(object):
         print("Spam number: ", data_y.count("spam"), "Ham number: ", data_y.count("ham"))
         return data_word_bags_X, data_y
 
+    # split sentence into a words, and return word count dictionary
     def split_data(self, sentence):
         word_bags = {}
         for word in re.split(r"[*:,\-.\s()<>;!?\[\]\'\"/]", sentence):
@@ -77,7 +79,7 @@ class NaiveBayes(object):
         for cls in ["spam", "ham"]:
             if cls == "ham":
                 # @ whether is belongs to spam
-                prior = self.num_ham / self.num_spam + self.num_ham
+                prior = self.num_ham / (self.num_spam + self.num_ham)
                 condition = 1
                 posterior = 0
                 for word, cnt in document.items():
@@ -109,14 +111,13 @@ class NaiveBayes(object):
             count += 1
             # @doc is composed by a dict with words count
             pre_class = self.predict(train_wb_spam, train_wb_ham, test_X[doc])
-
             if test_y[doc] == "ham" and pre_class == test_y[doc]:
                 TP += 1
-            elif test_y[doc] == "ham" and pre_class != test_y[doc]:
+            if test_y[doc] == "ham" and pre_class != test_y[doc]:
                 FN += 1
-            elif test_y[doc] == "spam" and pre_class == test_y[doc]:
+            if test_y[doc] == "spam" and pre_class == test_y[doc]:
                 TN += 1
-            elif test_y[doc] == "spam" and pre_class != test_y[doc]:
+            if test_y[doc] == "spam" and pre_class != test_y[doc]:
                 FP += 1
         recall = TP / (TP + FN)
         precision = TP / (TP + FP)
@@ -125,8 +126,10 @@ class NaiveBayes(object):
 
         print("Recall: ", recall, "Precision: ", precision, "Accuracy: ", accuracy, "f1: ", f1)
 
+    # K fold cross-validation
     def k_fold(self, data_X, data_y, k):
         for select in range(k):
+            # Select data for each iteration
             train_X, train_y, test_X, test_y = \
                 self.select_n_as_test(data_X, data_y, select, k)
 
@@ -134,6 +137,7 @@ class NaiveBayes(object):
             train_wb_spam, train_wb_ham = self.big_word_bags(train_X, train_y)
             self.naive_bayes(train_wb_spam, train_wb_ham, test_X, test_y)
 
+    # bag of words
     def big_word_bags(self, train_X, train_y):
         train_wb_spam, train_wb_ham = {}, {}
         num_spam, num_ham = 0, 0
@@ -151,6 +155,7 @@ class NaiveBayes(object):
         self.num_spam, self.num_ham = num_spam, num_ham
         return train_wb_spam, train_wb_ham
 
+    # Choose train set and test test, n-th part as test set
     def select_n_as_test(self, data_X, data_y, n, k):
         divide_index = []
         train_X, train_y, test_X, test_y = [], [], [], []
@@ -186,5 +191,14 @@ class NaiveBayes(object):
         # self.naive_bayes(self.train, self.test)
         print("Time cost: ", time.time() - t1)
 
+
+"""
+Steps:
+1、Read data from UCI Repository (SMS Spam Collection Data Set) https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection
+2、Read stop words (Download from internet)
+3、Data pre-processing
+4、Construct naïve bayes model
+5、Evaluate the model by using k fold cross-validation
+"""
 nb = NaiveBayes()
 nb.run()
